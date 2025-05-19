@@ -1,4 +1,4 @@
-package Midterms.GUI LOGIN;
+package Midterms.GUI_LOGIN;
 
 import java.awt.Color;
 import java.awt.GridLayout;
