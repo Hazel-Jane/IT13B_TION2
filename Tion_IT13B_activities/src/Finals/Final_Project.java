@@ -1,13 +1,16 @@
 package Finals;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import javax.swing.JOptionPane;
+
 
 
 public class Final_Project extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Final_Project
-     */
+
+    
+   
     public Final_Project() {
         initComponents();
     }
@@ -106,13 +109,27 @@ public class Final_Project extends javax.swing.JFrame {
     private void LoginbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginbtnActionPerformed
         String user = Userfield.getText();
         String pass = Passwordfield.getText();
+        int key = 3;
+        
+        String encryptedPass = " ";
+        for (int i = 0; i < pass.length(); i++){
+            char ch = pass.charAt(i);
+            encryptedPass += (char)(ch+key);
+        }
         
         if (user.equalsIgnoreCase("admin")&& pass.equalsIgnoreCase("admin123")){
-        JOptionPane.showConfirmDialog(null, "Are you sure you want to login?");
-        
+          
         dashboard dash =new dashboard();
         dash.setVisible(true);
         dispose();
+        try {
+            FileWriter Writer = new FileWriter ("C:\\Users\\Admin\\Desktop\\FINAL_PROJECT.txt\\");
+            Writer.write(user + "," + encryptedPass + "\n");
+            Writer.close();
+        }catch (IOException e){
+            System.out.println("ERROR");
+            e.printStackTrace();
+        }
         } else {
             JOptionPane.showMessageDialog(null, "Invalid username or password", "Login Error", JOptionPane.ERROR_MESSAGE);
         }
